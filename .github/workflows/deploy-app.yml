@@ -39,6 +39,9 @@ jobs:
 
           # Copy public assets from peru repo
           cp -r ../app/public ./public
+          
+          # Copy i18n assets from peru repo
+          cp -r ../app/i18n ./i18n
 
           # Copy wrangler config from cf-workers
           cp -r ../cf-workers/peru_2026/wrangler ./wrangler
