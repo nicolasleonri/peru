@@ -31,7 +31,7 @@ jobs:
           TOLGEE_PROJECT_ID: ${{ secrets.TOLGEE_PROJECT_ID }}
         run: |
           mkdir -p app/i18n
-          tolgee login --api-url $TOLGEE_API_URL
+          tolgee login --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY
           tolgee pull --path app/i18n --project-id $TOLGEE_PROJECT_ID
 
       - name: Commit and push changes
