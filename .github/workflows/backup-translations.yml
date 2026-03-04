@@ -27,11 +27,14 @@ jobs:
       - name: Pull translations from Tolgee
         env:
           TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
-          TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY }}
+          TOLGEE_API_KEY_HOME: ${{ secrets.TOLGEE_API_KEY_HOME }}
+          TOLGEE_API_KEY_APP: ${{ secrets.TOLGEE_API_KEY_APP }}
           TOLGEE_PROJECT_ID: ${{ secrets.TOLGEE_PROJECT_ID }}
         run: |
           mkdir -p app/i18n
-          tolgee pull --path app/i18n --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY
+          tolgee pull --path app/i18n --api-url $TOLGEE_API_URL --api-key TOLGEE_API_KEY_APP
+          mkdir -p home/i18n
+          tolgee pull --path home/i18n --api-url $TOLGEE_API_URL --api-key 
 
       - name: Commit and push changes
         run: |
