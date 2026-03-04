@@ -2,6 +2,14 @@ name: Deploy Home to CF Worker
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: choice
+        options:
+          - qa
+          - prod
 
 permissions:
   contents: read
@@ -9,7 +17,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Deploy to ${{ inputs.environment }}
+    environment: ${{ inputs.environment }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,12 +35,27 @@ jobs:
 
       - name: Load Env Variables
         env:
-          QA_ENV_FILE: ${{ secrets.HOMEPAGE_ENV_FILE }}
+          HOMEPAGE_ENV_FILE: ${{ secrets.HOMEPAGE_ENV_FILE }}
         working-directory: home
-        run:
-          # Parse env file
-          echo $QA_ENV_FILE | base64 --decode > .env
+        run: |
+          echo HOMEPAGE_ENV_FILE | base64 --decode > .env
+
+      - name: Replace QA placeholder in _headers and wrangler.toml
+        if: inputs.environment == 'qa'
+        env:
+          QA_DOMAIN: ${{ secrets.QA_DOMAIN }}
+        run: |
+          sed -i "s/placeholder\.com/$QA_DOMAIN/g" home/public/_headers
+          sed -i "s/placeholder\.com/$QA_DOMAIN/g" home/wrangler.toml
 
       - name: Build and Deploy to Cloudflare Workers
         working-directory: home
-        run: CLOUDFLARE_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCOUNT_ID }} CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} npm run deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ "${{ inputs.environment }}" = "qa" ]; then
+            npm run deploy-qa > /dev/null 2>&1
+          else
+            npm run deploy
+          fi
