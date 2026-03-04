@@ -74,11 +74,7 @@ jobs:
         working-directory: electometro
         run: npm ci
 
-      - name: Build
-        working-directory: electometro
-        run: VITE_ELECTION_ID=peru_2026 npm run build
-
-      - name: Deploy to Cloudflare Workers
+      - name: Build and Deploy to Cloudflare Workers
         working-directory: electometro
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
