@@ -1,7 +1,7 @@
 # Development/Preview
 # BUG: Can't run in non-HTTPS mode without replacing all instances of zone with 'localhost'. Workaround for now...
-https://localhost
-  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self' https://data.decide.pe https://i18n.decide.pe; img-src 'self' data: https://data.decide.pe; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
+https://localhost/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self' https://*.decide.pe; img-src 'self' data: https://data.decide.pe; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
 
 # Production
 https://decide.pe/*
@@ -12,4 +12,4 @@ https://decide.pe/*
 https://placeholder.com/*
   ! Content-Security-Policy
   X-Robots-Tag: noindex
-  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self' https://i18n.decide.pe https://data.decide.pe https://placeholder.com; img-src 'self' data: https://data.decide.pe; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/npm/@tolgee/ ; connect-src 'self' https://i18n.decide.pe https://data.decide.pe https://placeholder.com; img-src 'self' data: https://data.decide.pe; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
