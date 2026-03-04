@@ -7,17 +7,7 @@
   <link rel="canonical" href="https://electometro.org/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://challenges.cloudflare.com">
-  <!-- CSP: allow Cloudflare Turnstile, Supabase and domain connections -->
-  <meta http-equiv="Content-Security-Policy" content="
-      default-src 'self';
-      script-src 'self' https://cdn.jsdelivr.net/npm/@tolgee/ https://analytics.decide.pe https://challenges.cloudflare.com;
-      connect-src 'self' https://challenges.cloudflare.com https://analytics.decide.pe https://i18n.decide.pe https://electometro.org https://decid.es https://decide.pe;
-      img-src 'self' data: https://analytics.decide.pe;
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      font-src 'self' https://fonts.gstatic.com;
-      frame-src https://challenges.cloudflare.com;
-    ">
-  <!-- Cloudflare Turnstile (frame-src allowed above) -->
+  <!-- CSP headers are set via _headers file (see deploy/prod/ and deploy/qa/) -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <title>Electómetro</title>
 </head>

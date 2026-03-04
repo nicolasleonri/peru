@@ -1,0 +1,7 @@
+# Production (decide.pe)
+https://decide.pe*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/npm/@tolgee/ https://analytics.decide.pe https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://*.decide.pe https://decide.pe; img-src 'self' data: https://analytics.decide.pe; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://challenges.cloudflare.com;
+
+# QA (Replace with QA domain)
+https://placeholder.com*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/npm/@tolgee/ https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://*.decide.pe https://placeholder.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://challenges.cloudflare.com;
