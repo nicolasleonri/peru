@@ -1,5 +1,7 @@
-/*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self' https://*.decide.pe; img-src 'self' data: https://upload.wikimedia.org; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
+# Development/Preview
+# BUG: Can't run in non-HTTPS mode without replacing all instances of zone with 'localhost'. Workaround for now...
+https://localhost
+  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self' https://data.decide.pe https://i18n.decide.pe; img-src 'self' data: https://upload.wikimedia.org; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none';
 
 # Production
 https://decide.pe/*
