@@ -2,6 +2,14 @@ name: Deploy App to CF Worker
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: choice
+        options:
+          - qa
+          - prod
 
 permissions:
   contents: read
@@ -9,7 +17,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Deploy to ${{ inputs.environment }}
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout peru (this repo)
         uses: actions/checkout@v4
@@ -30,7 +39,7 @@ jobs:
 
       - name: Setup app directories
         env:
-          QA_ENV_FILE: ${{ secrets.QA_ENV_FILE }}
+          APP_ENV_FILE: ${{ secrets.APP_ENV_FILE }}
         run: |
           cd electometro
 
@@ -45,9 +54,14 @@ jobs:
 
           # Copy wrangler config from cf-workers
           cp -r ../cf-workers/peru_2026/wrangler ./wrangler
-          
-          # Parse env file
-          echo $QA_ENV_FILE | base64 --decode > .env
+          echo APP_ENV_FILE | base64 --decode > .env
+
+      - name: Replace QA placeholder in _headers
+        if: inputs.environment == 'qa'
+        env:
+          QA_DOMAIN: ${{ secrets.QA_DOMAIN }}
+        run: |
+          sed -i "s/placeholder\.com/$QA_DOMAIN/g" electometro/public/static/_headers
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -66,4 +80,9 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         working-directory: electometro
-        run: CLOUDFLARE_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCOUNT_ID }} CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} VITE_ELECTION_ID=peru_2026 npm run deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ENV: ${{ inputs.environment == 'qa' && 'qa' || '' }}
+        run: |
+          CLOUDFLARE_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCOUNT_ID }} CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} CLOUDFLARE_ENV=$CLOUDFLARE_ENV npm run deploy
