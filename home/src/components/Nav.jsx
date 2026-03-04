@@ -41,7 +41,7 @@ function Nav() {
           </li>
           <li className="nav-item">
             <a
-              href="https://demo.decide.pe"
+              href="{import.meta.env.VITE_ELECTOMETRO_URL}"
               className="nav-link nav-cta"
               target="_blank"
               rel="noopener noreferrer"

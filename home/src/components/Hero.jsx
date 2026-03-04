@@ -18,7 +18,7 @@ function Hero() {
         </h1>
         <div className="hero-cta">
           <a
-            href="https://demo.decide.pe"
+            href="{import.meta.env.VITE_ELECTOMETRO_URL}"
             className="btn btn-primary"
             target="_blank"
             rel="noopener noreferrer"

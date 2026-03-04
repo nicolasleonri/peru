@@ -70,7 +70,7 @@ function HowItWorks() {
             <T keyName="howItWorks.cta.description">Descubre en minutos qué partido político representa mejor tus ideas</T>
           </p>
           <a
-            href="https://demo.decide.pe"
+            href="{import.meta.env.VITE_ELECTOMETRO_URL}"
             className="btn btn-primary"
             target="_blank"
             rel="noopener noreferrer"
