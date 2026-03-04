@@ -80,9 +80,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          # Wrangler refuses to parse vars from env. We pass them explicitly
-          export CLOUDFLARE_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          export CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }}
           if [ "${{ inputs.environment }}" = "qa" ]; then
             VITE_ELECTION_ID=peru_2026 npm run deploy-qa > /dev/null 2>&1
           else
