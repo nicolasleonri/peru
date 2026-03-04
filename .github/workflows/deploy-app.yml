@@ -54,7 +54,7 @@ jobs:
 
           # Copy wrangler config from cf-workers
           cp -r ../cf-workers/peru_2026/wrangler ./wrangler
-          echo APP_ENV_FILE | base64 --decode > .env
+          echo $APP_ENV_FILE | base64 --decode > .env
 
       - name: Replace QA placeholder in _headers
         if: inputs.environment == 'qa'
