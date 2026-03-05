@@ -30,14 +30,14 @@ function Nav() {
 
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="nav-item">
-            <a href="/#caracteristicas" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/#caracteristicas" className="nav-link" onClick={() => setIsMenuOpen(false)}>
               <T keyName="nav.features">Características</T>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="/#como-funciona" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <Link to="/#como-funciona" className="nav-link" onClick={() => setIsMenuOpen(false)}>
               <T keyName="nav.howItWorks">Cómo Funciona</T>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a

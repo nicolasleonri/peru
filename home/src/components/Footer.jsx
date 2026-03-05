@@ -18,8 +18,8 @@ function Footer() {
               <T keyName="footer.about.title">Acerca de</T>
             </h4>
             <ul className="footer-links">
-              <li><a href="/#caracteristicas"><T keyName="footer.about.features">Características</T></a></li>
-              <li><a href="/#como-funciona"><T keyName="footer.about.howItWorks">Cómo Funciona</T></a></li>
+              <li><Link to="/#caracteristicas"><T keyName="footer.about.features">Características</T></Link></li>
+              <li><Link to="/#como-funciona"><T keyName="footer.about.howItWorks">Cómo Funciona</T></Link></li>
               <li><a href={import.meta.env.VITE_ELECTOMETRO_URL} target="_blank" rel="noopener noreferrer"><T keyName="footer.about.startTest">Empezar Test</T></a></li>
             </ul>
           </div>
