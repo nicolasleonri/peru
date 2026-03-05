@@ -1,5 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import './LoadingScreen.css'
+
+const LoadingContext = createContext({
+    setCarouselReady: () => {},
+    isReady: false
+})
+
+export function useLoading() {
+    return useContext(LoadingContext)
+}
 
 function LoadingScreen() {
     return (
@@ -17,18 +26,28 @@ function LoadingScreen() {
 }
 
 export function LoadingWrapper({ children, minDelay = 500 }) {
-    const [showContent, setShowContent] = useState(false)
+    const [timerDone, setTimerDone] = useState(false)
+    const [carouselReady, setCarouselReady] = useState(false)
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowContent(true), minDelay)
+        const timer = setTimeout(() => setTimerDone(true), minDelay)
         return () => clearTimeout(timer)
     }, [minDelay])
 
-    if (!showContent) {
-        return <LoadingScreen />
-    }
+    const showContent = timerDone && carouselReady
 
-    return children
+    return (
+        <LoadingContext.Provider value={{ setCarouselReady, isReady: showContent }}>
+            {!showContent && <LoadingScreen />}
+            <div style={{
+                opacity: showContent ? 1 : 0,
+                transition: showContent ? 'opacity 0.3s ease' : 'none',
+                pointerEvents: showContent ? 'auto' : 'none'
+            }}>
+                {children}
+            </div>
+        </LoadingContext.Provider>
+    )
 }
 
 export default LoadingScreen

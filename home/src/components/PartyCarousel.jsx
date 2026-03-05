@@ -1,8 +1,14 @@
+import { useRef } from 'react'
+import { useLoading } from './LoadingScreen'
 import './PartyCarousel.css'
 
 const ASSETS_BASE_URL = import.meta.env.VITE_ASSETS_BASE_URL;
 
 function PartyCarousel() {
+  const { setCarouselReady } = useLoading()
+  const loadedCount = useRef(0)
+  const hasSignaled = useRef(false)
+
   // Party names must match filenames in bucket: {ASSETS_BASE_URL}/peru_2026/party_logos/{name}.{ext}
   const parties = [
     { name: 'PRIN', file: 'PRIN.png' },
@@ -29,6 +35,14 @@ function PartyCarousel() {
     logo: `${ASSETS_BASE_URL}/peru_2026/party_logos/${encodeURIComponent(p.file)}`
   }))
 
+  const handleImageLoad = () => {
+    loadedCount.current += 1
+    if (loadedCount.current >= parties.length && !hasSignaled.current) {
+      hasSignaled.current = true
+      setCarouselReady(true)
+    }
+  }
+
   return (
     <div className="party-carousel">
       <div className="carousel-track">
@@ -39,6 +53,7 @@ function PartyCarousel() {
               src={party.logo}
               alt={party.name}
               className="party-logo"
+              onLoad={handleImageLoad}
             />
           </div>
         ))}

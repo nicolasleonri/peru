@@ -142,8 +142,12 @@
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
-  -webkit-animation: statsFadeIn 0.4s ease-out 0.3s both;
-  animation: statsFadeIn 0.4s ease-out 0.3s both;
+  opacity: 0;
+}
+
+.hero-stats.animate {
+  -webkit-animation: statsFadeIn 0.4s ease-out 0.3s forwards;
+  animation: statsFadeIn 0.4s ease-out 0.3s forwards;
 }
 
 @-webkit-keyframes statsFadeIn {
@@ -173,7 +177,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-stats {
+  .hero-stats,
+  .hero-stats.animate {
     -webkit-animation: none;
     animation: none;
     opacity: 1;

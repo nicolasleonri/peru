@@ -1,8 +1,11 @@
 import { T } from "@tolgee/react"
+import { useLoading } from './LoadingScreen'
 import './Hero.css'
 import PartyCarousel from './PartyCarousel.jsx'
 
 function Hero() {
+  const { isReady } = useLoading()
+
   return (
     <section className="hero" id="hero">
       <div className="hero-content">
@@ -30,7 +33,7 @@ function Hero() {
             <T keyName="hero.cta.learnMore">Conocer Más</T>
           </a>
         </div>
-        <div className="hero-stats">
+        <div className={`hero-stats ${isReady ? 'animate' : ''}`}>
           <div className="stat">
             <div className="stat-number"><T keyName="hero.stats.questions_nr">20</T></div>
             <div className="stat-label"><T keyName="hero.stats.questions">Preguntas</T></div>
