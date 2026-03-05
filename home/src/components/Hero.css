@@ -1,10 +1,13 @@
 .hero {
+  --navbar-height: 73px;
   min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height - excludes mobile browser chrome */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  /*padding-top: 5rem;*/
+  padding-top: var(--navbar-height);
+  box-sizing: border-box;
   background: linear-gradient(360deg, #fff 0%, #dfcfcf 100%);
   position: relative;
   overflow: hidden;
@@ -161,7 +164,9 @@
 
 @media (max-width: 768px) {
   .hero {
+    --navbar-height: 58px;
     padding: 1rem 0.5rem;
+    padding-top: var(--navbar-height);
   }
 
   .hero-content {
