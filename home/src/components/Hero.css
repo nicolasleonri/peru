@@ -77,8 +77,14 @@
   color: var(--text-dark);
 }
 
-.gradient-text {
-  background: linear-gradient(150deg, #1e070a 0%, #FF001A 100%);
+.title-discover {
+}
+
+.title-who {
+}
+
+.title-represents {
+  background: linear-gradient(160deg, #1e070a 0%, #FF001A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
