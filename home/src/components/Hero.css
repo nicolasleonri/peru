@@ -43,34 +43,6 @@
   z-index: 1;
   box-sizing: border-box;
   padding: 0 1rem;
-  -webkit-animation: heroFadeIn 0.4s ease-out both;
-  animation: heroFadeIn 0.4s ease-out both;
-}
-
-@-webkit-keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
 }
 
 .hero-logo {
@@ -95,8 +67,6 @@
   font-size: 1.1rem;
   font-weight: 500;
   color: #53222C;
-  -webkit-animation: heroFadeIn 0.3s ease-out 0.1s both;
-  animation: heroFadeIn 0.3s ease-out 0.1s both;
 }
 
 .hero-title {
@@ -105,8 +75,6 @@
   line-height: 1.2;
   margin-bottom: 0.5rem;
   color: var(--text-dark);
-  -webkit-animation: heroFadeIn 0.3s ease-out 0.15s both;
-  animation: heroFadeIn 0.3s ease-out 0.15s both;
 }
 
 .gradient-text {
@@ -133,8 +101,6 @@
   flex-wrap: wrap;
   margin-top: 4rem;
   margin-bottom: 4rem;
-  -webkit-animation: heroFadeIn 0.3s ease-out 0.2s both;
-  animation: heroFadeIn 0.3s ease-out 0.2s both;
 }
 
 .btn {
@@ -176,8 +142,42 @@
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
-  -webkit-animation: heroFadeIn 0.3s ease-out 0.25s both;
-  animation: heroFadeIn 0.3s ease-out 0.25s both;
+  -webkit-animation: statsFadeIn 0.4s ease-out 0.3s both;
+  animation: statsFadeIn 0.4s ease-out 0.3s both;
+}
+
+@-webkit-keyframes statsFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes statsFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stats {
+    -webkit-animation: none;
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .stat {
@@ -232,17 +232,5 @@
 
   .stat-number {
     font-size: 2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-content,
-  .hero-badge,
-  .hero-title,
-  .hero-cta,
-  .hero-stats {
-    -webkit-animation: none;
-    animation: none;
-    opacity: 1;
   }
 }
