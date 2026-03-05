@@ -14,8 +14,14 @@
 .carousel-track {
   display: flex;
   gap: 3rem;
+  width: max-content;
+  -webkit-animation: scroll 40s linear infinite;
   animation: scroll 40s linear infinite;
-  width: fit-content;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .party-logo-wrapper {
@@ -34,10 +40,10 @@
 }
 
 .party-logo-wrapper:hover {
+  -webkit-transform: translateY(-5px) scale(1.05);
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 8px 20px rgba(217, 16, 35, 0.2);
   border-color: rgba(217, 16, 35, 0.3);
-  animation-play-state: paused;
 }
 
 .party-logo {
@@ -52,17 +58,31 @@
   filter: grayscale(0%);
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+@-webkit-keyframes scroll {
+  from {
+    -webkit-transform: translateX(0) translateZ(0);
+    transform: translateX(0) translateZ(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    -webkit-transform: translateX(-50%) translateZ(0);
+    transform: translateX(-50%) translateZ(0);
+  }
+}
+
+@keyframes scroll {
+  from {
+    -webkit-transform: translateX(0) translateZ(0);
+    transform: translateX(0) translateZ(0);
+  }
+  to {
+    -webkit-transform: translateX(-50%) translateZ(0);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
 /* Pause animation on hover over the carousel */
 .party-carousel:hover .carousel-track {
+  -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
 
@@ -75,12 +95,14 @@
 
   .carousel-track {
     gap: 2rem;
+    -webkit-animation: scroll 30s linear infinite;
     animation: scroll 30s linear infinite;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .carousel-track {
+    -webkit-animation: scroll 80s linear infinite;
     animation: scroll 80s linear infinite;
   }
 }

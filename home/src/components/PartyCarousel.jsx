@@ -39,7 +39,6 @@ function PartyCarousel() {
               src={party.logo}
               alt={party.name}
               className="party-logo"
-              loading="lazy"
             />
           </div>
         ))}
@@ -50,7 +49,7 @@ function PartyCarousel() {
               src={party.logo}
               alt={party.name}
               className="party-logo"
-              loading="lazy"
+              aria-hidden="true"
             />
           </div>
         ))}
