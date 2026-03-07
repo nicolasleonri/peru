@@ -14,27 +14,27 @@
       "title": "Accesible en Cualquier Dispositivo"
     },
     "fast": {
-      "description": "Completa el cuestionario en menos de 10 minutos y obtén resultados instantáneos. Listo!",
+      "description": "Completa el cuestionario en menos de 5 minutos y obtén resultados instantáneos. Listo!",
       "title": "Rápido y Fácil"
     },
     "matching": {
-      "description": "Algoritmo que compara tus respuestas con las posiciones reales de los partidos políticos.",
-      "title": "Precisión en el Matching"
+      "description": "Nuestro algoritmo compara tus respuestas con los planes de los partidos políticos. Así calculamos con qué candidatos haces \"match\"",
+      "title": "Así funciona "
     },
     "objective": {
       "description": "Metodología transparente basada en propuestas y posiciones públicas de los partidos.",
       "title": "Objetivo"
     },
     "privacy": {
-      "description": "Tus respuestas no pueden ser usadas para identificarte.",
-      "title": "Privacidad Garantizada"
+      "description": "No guardamos tus datos personales. Tampoco compartimos información con políticos o privados.",
+      "title": "Protegemos tus datos"
     },
     "results": {
       "description": "Visualiza tu afinidad con cada partido y compara tus respuestas con sus posiciones.",
       "title": "Resultados Detallados"
     },
-    "subtitle": "Una herramienta confiable y transparente para tomar decisiones informadas",
-    "title": "¿Por qué usar el Electómetro?"
+    "subtitle": "Una herramienta confiable y transparente para tomar decisiones informadas. No te decimos por quién votar. Te ayudamos a ordenar tus prioridades políticas y ver qué partidos y candidatos las tienen por delante.",
+    "title": "¿Qué es el Electómetro?"
   },
   "footer": {
     "about": {
@@ -56,7 +56,7 @@
   "hero": {
     "badge": "Elecciones 2026",
     "cta": {
-      "learnMore": "Conocer Más",
+      "learnMore": "Conocer más",
       "start": "Empezar"
     },
     "stats": {
@@ -65,9 +65,9 @@
       "questions": "Preguntas"
     },
     "title": {
-      "discover": "Descubre",
-      "represents": "te representa",
-      "who": "quién"
+      "discover": "Decide informado",
+      "represents": "5 minutos",
+      "who": "en"
     }
   },
   "howItWorks": {
@@ -77,8 +77,8 @@
       "title": "¿Listo para empezar?"
     },
     "step1": {
-      "description": "Contesta un cuestionario sobre temas políticos importantes. Puedes saltar preguntas si no estás seguro.",
-      "title": "Responde las Preguntas"
+      "description": "Indica si estás a favor, neutral o en contra de diferentes casos políticos. Puedes saltar preguntas si no estás seguro.",
+      "title": "Responde las preguntas"
     },
     "step2": {
       "description": "Nuestro algoritmo compara tus respuestas con las posiciones de todos los partidos políticos.",
@@ -92,12 +92,12 @@
       "description": "Usa esta información como guía para tomar una decisión electoral más consciente y fundamentada.",
       "title": "Decide Informado"
     },
-    "subtitle": "En solo 4 pasos simples, encuentra el partido que mejor representa tus valores",
-    "title": "¿Cómo Funciona?"
+    "subtitle": "En solo 5 pasos, encuentra el partido y candidato que mejor representa tus valores",
+    "title": "¿Cómo funciona?"
   },
   "nav": {
-    "features": "Características",
-    "howItWorks": "Cómo Funciona",
+    "features": "Qué es",
+    "howItWorks": "Cómo funciona",
     "start": "Empezar"
   }
 }
