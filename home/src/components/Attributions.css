@@ -43,6 +43,7 @@
 }
 
 .attribution-card:hover {
+  -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
   border-color: rgba(217, 16, 35, 0.3);
   box-shadow: 0 8px 20px rgba(217, 16, 35, 0.1);

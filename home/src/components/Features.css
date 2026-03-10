@@ -44,6 +44,7 @@
 }
 
 .feature-card:hover {
+  -webkit-transform: translateY(-5px);
   transform: translateY(-5px);
   border-color: rgba(217, 16, 35, 0.4);
   background: #ffffff;

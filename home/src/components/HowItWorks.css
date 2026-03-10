@@ -16,8 +16,11 @@
 .steps-container {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   margin-bottom: 5rem;
+}
+
+.steps-container > * + * {
+  margin-top: 3rem;
 }
 
 .step {
@@ -35,6 +38,7 @@
 .step:hover {
   border-color: rgba(217, 16, 35, 0.4);
   background: #ffffff;
+  -webkit-transform: translateX(10px);
   transform: translateX(10px);
 }
 
@@ -98,11 +102,15 @@
 
   .step {
     grid-template-columns: 1fr;
-    gap: 1rem;
     padding: 1.5rem;
   }
 
+  .steps-container > * + * {
+    margin-top: 1.5rem;
+  }
+
   .step:hover {
+    -webkit-transform: translateX(5px);
     transform: translateX(5px);
   }
 
@@ -123,15 +131,3 @@
   }
 }
 
-/* Safari 12 / iOS 12 compatibility: flexbox gap fallback */
-@supports not (gap: 1rem) {
-  .steps-container > * + * {
-    margin-top: 3rem;
-  }
-
-  @media (max-width: 768px) {
-    .steps-container > * + * {
-      margin-top: 1rem;
-    }
-  }
-}

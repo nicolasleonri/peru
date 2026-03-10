@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { T } from "@tolgee/react"
+import { smoothScrollTo } from '../utils/smoothScroll'
 import './Nav.css'
 
 function Nav() {
@@ -14,7 +15,10 @@ function Nav() {
 
   const handleLogoClick = (e) => {
     e.preventDefault()
-    document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })
+    const heroElement = document.getElementById('hero')
+    if (heroElement) {
+      smoothScrollTo(heroElement)
+    }
     if (location.hash) {
       setTimeout(() => navigate('/', { replace: true }), 600)
     } else {
