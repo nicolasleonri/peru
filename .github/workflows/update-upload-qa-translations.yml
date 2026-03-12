@@ -48,9 +48,11 @@ jobs:
           TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
           TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
         run: |
+          mkdir -p app/i18n-upload
+          cp app/i18n/*-qa.json app/i18n-upload/
+          cd app/i18n-upload
           npx @tolgee/cli push \
-            --languages es-qa \
-            --files-template 'app/i18n/{languageTag}.{extension}' \
+            --files-template '{languageTag}.{extension}' \
             --force-mode OVERRIDE \
             --api-url $TOLGEE_API_URL \
             --api-key $TOLGEE_API_KEY
