@@ -135,7 +135,6 @@ jobs:
           TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
         run: |
           npx @tolgee/cli push \
-            --path app/i18n \
             --languages es \
             --force-mode OVERRIDE \
             --api-url $TOLGEE_API_URL \
