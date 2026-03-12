@@ -50,7 +50,7 @@ jobs:
         run: |
           npx @tolgee/cli tag \
             --extractor ./app/scripts/tolgee-extractor.js \
-            --patterns '*' \
+            --patterns * \
             --filter-extracted \
             --untag 'qa-v*' \
             --tag 'qa-v${{ steps.version.outputs.qa_version }}' \
