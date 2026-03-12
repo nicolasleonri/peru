@@ -150,6 +150,14 @@ jobs:
             --api-url $TOLGEE_API_URL \
             --api-key $TOLGEE_API_KEY
 
+      - name: Pull production translations from Tolgee (resync)
+        env:
+          TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
+          TOLGEE_API_KEY_APP: ${{ secrets.TOLGEE_API_KEY_APP }}
+        run: |
+          mkdir -p app/i18n
+          tolgee pull --path app/i18n --languages es --languages qu --languages ay --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_APP
+
       - name: Tag production keys in Tolgee
         env:
           TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
