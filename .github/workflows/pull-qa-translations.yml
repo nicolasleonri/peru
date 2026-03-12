@@ -33,8 +33,8 @@ jobs:
         run: |
           mkdir -p app/i18n
           tolgee pull --path app/i18n --languages es-qa,qu-qa,ay-qa --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_APP
-          mkdir -p home/i18n
-          tolgee pull --path home/i18n --languages es-qa,qu-qa,ay-qa --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_HOME
+          # mkdir -p home/i18n
+          # tolgee pull --path home/i18n --languages es-qa,qu-qa,ay-qa --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_HOME
 
       - name: Commit and push changes
         run: |
