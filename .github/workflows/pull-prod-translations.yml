@@ -17,7 +17,7 @@ permissions:
 jobs:
   pull-prod:
     runs-on: ubuntu-latest
-    name: Pull QA Translations
+    name: Pull PROD Translations
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
