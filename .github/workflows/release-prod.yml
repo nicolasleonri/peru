@@ -15,6 +15,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release-prod
+  cancel-in-progress: true
+
 jobs:
   upload-data:
     if: inputs.upload_data == 'yes'
@@ -83,6 +87,8 @@ jobs:
     needs: [deploy-app]
     if: always() && needs.deploy-app.result == 'success'
     uses: ./.github/workflows/pull-qa-translations.yml
+    with:
+      ref: ${{ github.ref_name }}
     secrets: inherit
 
   promote-to-production:

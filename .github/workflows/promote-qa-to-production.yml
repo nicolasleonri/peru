@@ -19,6 +19,8 @@ jobs:
   pull-qa:
     if: inputs.pull_latest == 'yes'
     uses: ./.github/workflows/pull-qa-translations.yml
+    with:
+      ref: ${{ github.ref_name }}
     secrets: inherit
 
   promote:
