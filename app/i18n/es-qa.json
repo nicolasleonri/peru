@@ -646,7 +646,6 @@
       "c4": {
         "t1": "\"\".",
         "t10": "Si bien el plan de gobierno de Podemos Perú promete mayor inversión pública, prioriza claramente la inversión privada. El énfasis en el caso de la inversión pública es puesto en la \"ejecución\", es decir, en llevar a cabo gran parte de los gastos previstos según el presupuesto estatal. Además, el crecimiento de la inversión estatal es atado a que se cumpla la condición del crecimiento económico.(algo como este;el plan es un poco vago, pero no habla de regularizar inmigrantes y en cambio le dedica harta atención a la frontera)",
-        "t11": "",
         "t12": "Por falta de información, se tomó la posición del partido: El plan dedica un bloque específico a cambio climático, adaptación, economía baja en carbono, infraestructura resiliente y evaluación obligatoria del riesgo climático en inversiones públicas.",
         "t13": "\"\".",
         "t14": "Williams se considera \"liberal en lo económico\" e incluso califica negativamente (lo llama \"asistencialismo\") al gasto social del estado.",
@@ -1555,7 +1554,7 @@
     "topicSuggestionCancel": "Cancelar",
     "topicSuggestionContactLabel": "Tu nombre",
     "topicSuggestionContactPlaceholder": " ",
-    "topicSuggestionCta": "Enviar sugerencia 📬",
+    "topicSuggestionCta": "Enviar sugerencia \uD83D\uDCEC",
     "topicSuggestionEmailError": "Por favor introduce una dirección válida",
     "topicSuggestionEmailLabel": "Correo electrónico",
     "topicSuggestionEmailPlaceholder": " ",
