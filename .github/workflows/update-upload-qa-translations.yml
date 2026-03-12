@@ -43,6 +43,18 @@ jobs:
       - name: Install Tolgee CLI
         run: npm install -g @tolgee/cli
 
+      - name: Push translations to Tolgee
+        env:
+          TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
+          TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
+        run: |
+          npx @tolgee/cli push \
+            --path app/i18n \
+            --languages es-qa \
+            --force-mode OVERRIDE \
+            --api-url $TOLGEE_API_URL \
+            --api-key $TOLGEE_API_KEY
+
       - name: Tag keys in Tolgee
         env:
           TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
@@ -64,3 +76,13 @@ jobs:
           git add app/i18n/es-qa.json
           git commit -m "Update QA translations from data" || true
           git push
+
+      - name: Publish to CDN
+        env:
+          TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
+          TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
+#          TOLGEE_PROJECT_ID: ${{ secrets.TOLGEE_PROJECT_ID_APP }}
+#          TOLGEE_CDN_CONFIG_ID: ${{ secrets.TOLGEE_CDN_CONFIG_ID_APP }}
+        run: |
+          curl -L -X POST "${TOLGEE_API_URL}/v2/projects/34/content-delivery-configs/1" \
+            -H "X-API-Key: ${TOLGEE_API_KEY}"

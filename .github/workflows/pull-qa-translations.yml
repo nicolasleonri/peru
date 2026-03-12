@@ -1,17 +1,18 @@
-name: Back up i18n files
+name: Pull QA Translations
 
 on:
   schedule:
     - cron: '0 6 * * *' # Daily at 6 AM UTC
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
 
 jobs:
-  backup:
+  pull-qa:
     runs-on: ubuntu-latest
-    name: Backup Translations
+    name: Pull QA Translations
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,17 +25,16 @@ jobs:
       - name: Install Tolgee CLI
         run: npm install -g @tolgee/cli
 
-      - name: Pull translations from Tolgee
+      - name: Pull QA translations from Tolgee
         env:
           TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
           TOLGEE_API_KEY_HOME: ${{ secrets.TOLGEE_API_KEY_HOME }}
           TOLGEE_API_KEY_APP: ${{ secrets.TOLGEE_API_KEY_APP }}
-          TOLGEE_PROJECT_ID: ${{ secrets.TOLGEE_PROJECT_ID }}
         run: |
           mkdir -p app/i18n
-          tolgee pull --path app/i18n --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_APP
+          tolgee pull --path app/i18n --languages es-qa,qu-qa,ay-qa --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_APP
           mkdir -p home/i18n
-          tolgee pull --path home/i18n --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_HOME
+          tolgee pull --path home/i18n --languages es-qa,qu-qa,ay-qa --api-url $TOLGEE_API_URL --api-key $TOLGEE_API_KEY_HOME
 
       - name: Commit and push changes
         run: |
@@ -45,6 +45,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No translation changes to commit"
           else
-            git commit -m "chore: update i18n translations"
+            git commit -m "chore: update QA translations from Tolgee"
             git push
           fi

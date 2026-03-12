@@ -1,0 +1,112 @@
+name: Promote QA to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      pull_latest:
+        description: 'Pull latest QA translations from Tolgee first?'
+        required: true
+        type: choice
+        default: 'yes'
+        options:
+          - 'yes'
+          - 'no'
+
+permissions:
+  contents: write
+
+jobs:
+  pull-qa:
+    if: inputs.pull_latest == 'yes'
+    uses: ./.github/workflows/pull-qa-translations.yml
+    secrets: inherit
+
+  promote:
+    runs-on: ubuntu-latest
+    needs: [pull-qa]
+    if: always() && (needs.pull-qa.result == 'success' || needs.pull-qa.result == 'skipped')
+    steps:
+      - name: Warn if not pulling latest
+        if: inputs.pull_latest == 'no'
+        run: |
+          echo "::warning::Working with i18n files from the repository. Any changes made in Tolgee since the last pull will NOT be reflected in this promotion."
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Pull latest changes (in case pull-qa pushed)
+        run: git pull origin ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run promote script
+        id: promote
+        run: python app/scripts/promote_i18n_qa_to_production.py
+
+      - name: Extract production version
+        id: version
+        run: |
+          PROD_VERSION=$(python -c "import json; print(json.load(open('app/i18n/es.json'))['data']['version']['production'])")
+          echo "prod_version=$PROD_VERSION" >> $GITHUB_OUTPUT
+          echo "Production version: $PROD_VERSION"
+
+      - name: Check for manual edits
+        id: manual_edits
+        run: |
+          EDIT_COUNT=$(python -c "import json; d=json.load(open('app/i18n/manual_edits.json')); print(len(d.get('qu',[])) + len(d.get('ay',[])))")
+          echo "count=$EDIT_COUNT" >> $GITHUB_OUTPUT
+          echo "Manual edits detected: $EDIT_COUNT"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Tolgee CLI
+        run: npm install -g @tolgee/cli
+
+      - name: Tag production keys in Tolgee
+        env:
+          TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
+          TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
+        run: |
+          npx @tolgee/cli tag \
+            --extractor ./app/scripts/tolgee-extractor.js \
+            --patterns 'app/i18n/es.json' \
+            --filter-extracted \
+            --untag 'prod-v*' \
+            --tag 'prod-v${{ steps.version.outputs.prod_version }}' \
+            --api-url $TOLGEE_API_URL \
+            --api-key $TOLGEE_API_KEY
+
+      - name: Tag manual edits in Tolgee
+        if: steps.manual_edits.outputs.count != '0'
+        env:
+          TOLGEE_API_URL: ${{ secrets.TOLGEE_API_URL }}
+          TOLGEE_API_KEY: ${{ secrets.TOLGEE_API_KEY_APP }}
+        run: |
+          echo "Tagging ${{ steps.manual_edits.outputs.count }} keys with manual-edit-detected"
+          npx @tolgee/cli tag \
+            --extractor ./app/scripts/tolgee-extractor-manual-edits.js \
+            --patterns * \
+            --filter-extracted \
+            --tag 'manual-edit-detected' \
+            --api-url $TOLGEE_API_URL \
+            --api-key $TOLGEE_API_KEY
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add app/i18n/es.json
+          git commit -m "Promote QA translations to production (v${{ steps.version.outputs.prod_version }})" || true
+          git push
+
+      - name: Cleanup manual edits file
+        run: rm -f app/i18n/manual_edits.json

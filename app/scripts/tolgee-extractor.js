@@ -11,8 +11,8 @@ export default function extractor(code, fileName) {
   const keys = [];
   const warnings = [];
 
-  // Only process es-qa.json
-  if (!fileName.endsWith('es-qa.json')) {
+  // Only process es-qa.json or es.json
+  if (!fileName.endsWith('es-qa.json') && !fileName.endsWith('es.json')) {
     return { keys, warnings };
   }
 
