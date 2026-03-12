@@ -93,56 +93,12 @@ def main():
     # Key prefixes we care about for manual edit detection
     key_prefixes = ["quiz.questions.", "quiz.topics.", "explanations.parties.", "explanations.candidates."]
 
-    # Verify es-qa.json exists
-    if not os.path.exists(es_qa_file):
-        print(f"Error: {es_qa_file} not found")
+    qa_files = [f for f in os.listdir(i18n_dir) if f.endswith("-qa.json")]
+    if not qa_files:
+        print("Error: No *-qa.json files found")
         sys.exit(1)
 
-    # Load es-qa.json
-    print(f"Loading {es_qa_file}...")
-    with open(es_qa_file, "r", encoding="utf-8") as f:
-        es_qa = json.load(f)
-    print(f"  -> Loaded {count_keys(es_qa)} QA keys")
-
-    # Load existing es.json or start fresh
-    if os.path.exists(es_file):
-        print(f"Loading {es_file}...")
-        with open(es_file, "r", encoding="utf-8") as f:
-            es_prod = json.load(f)
-        print(f"  -> Loaded {count_keys(es_prod)} existing production keys")
-    else:
-        print(f"{es_file} not found, creating new file")
-        es_prod = {}
-
-    # Get QA version
-    qa_version = es_qa.get("data", {}).get("version", {}).get("qa", "")
-    if not qa_version:
-        print("Warning: No data.version.qa found in es-qa.json")
-    else:
-        print(f"  -> QA version: {qa_version}")
-
-    # Deep merge: es_qa keys overwrite es_prod keys
-    merged = deep_merge(es_prod, es_qa)
-
-    # Set data.version.production = data.version.qa
-    if "data" not in merged:
-        merged["data"] = {}
-    if "version" not in merged["data"]:
-        merged["data"]["version"] = {}
-    merged["data"]["version"]["production"] = qa_version
-
-    # Sort keys for consistent output
-    sorted_merged = sort_nested_dict(merged)
-
-    # Write to es.json
-    with open(es_file, "w", encoding="utf-8") as f:
-        json.dump(sorted_merged, f, ensure_ascii=False, indent=2)
-
-    print(f"Wrote {es_file}")
-    print(f"  -> Total keys: {count_keys(sorted_merged)}")
-    print(f"  -> Production version set to: {qa_version}")
-
-    # Detect manual edits in qu and ay
+    # Detect manual edits in qu and ay (before overwriting production files)
     manual_edits = {"qu": [], "ay": []}
 
     # Compare qu-qa with qu
@@ -185,6 +141,50 @@ def main():
         with open(manual_edits_file, "w", encoding="utf-8") as f:
             json.dump({"qu": [], "ay": []}, f)
         print(f"\nNo manual edits detected")
+
+    # Merge all QA files into production counterparts
+    for qa_filename in sorted(qa_files):
+        qa_path = os.path.join(i18n_dir, qa_filename)
+        lang = qa_filename.replace("-qa.json", "")
+        prod_filename = f"{lang}.json"
+        prod_path = os.path.join(i18n_dir, prod_filename)
+
+        print(f"\nLoading {qa_path}...")
+        with open(qa_path, "r", encoding="utf-8") as f:
+            qa_data = json.load(f)
+        print(f"  -> Loaded {count_keys(qa_data)} QA keys")
+
+        if os.path.exists(prod_path):
+            print(f"Loading {prod_path}...")
+            with open(prod_path, "r", encoding="utf-8") as f:
+                prod_data = json.load(f)
+            print(f"  -> Loaded {count_keys(prod_data)} existing production keys")
+        else:
+            print(f"{prod_path} not found, creating new file")
+            prod_data = {}
+
+        qa_version = qa_data.get("data", {}).get("version", {}).get("qa", "")
+        if not qa_version:
+            print(f"Warning: No data.version.qa found in {qa_filename}")
+
+        merged = deep_merge(prod_data, qa_data)
+
+        if "data" not in merged:
+            merged["data"] = {}
+        if "version" not in merged["data"]:
+            merged["data"]["version"] = {}
+        if qa_version:
+            merged["data"]["version"]["production"] = qa_version
+
+        sorted_merged = sort_nested_dict(merged)
+
+        with open(prod_path, "w", encoding="utf-8") as f:
+            json.dump(sorted_merged, f, ensure_ascii=False, indent=2)
+
+        print(f"Wrote {prod_path}")
+        print(f"  -> Total keys: {count_keys(sorted_merged)}")
+        if qa_version:
+            print(f"  -> Production version set to: {qa_version}")
 
     # Output for GitHub Actions
     print(f"\n::set-output name=manual_edits_count::{total_edits}")
