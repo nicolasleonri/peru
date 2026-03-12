@@ -58,15 +58,15 @@ jobs:
         run: |
           echo "Triggering app deployment to production..."
           gh workflow run deploy-app.yml \
-            --repo electometro-org/peru-assets \
+            --repo electometro-org/ \
             --field environment=prod
           echo "Waiting for deployment to start..."
           sleep 10
           # Wait for the workflow to complete (timeout after 10 minutes)
           for i in {1..60}; do
-            STATUS=$(gh run list --repo electometro-org/peru-assets --workflow=deploy-app.yml --limit=1 --json status --jq '.[0].status')
+            STATUS=$(gh run list --repo electometro-org/ --workflow=deploy-app.yml --limit=1 --json status --jq '.[0].status')
             if [ "$STATUS" = "completed" ]; then
-              CONCLUSION=$(gh run list --repo electometro-org/peru-assets --workflow=deploy-app.yml --limit=1 --json conclusion --jq '.[0].conclusion')
+              CONCLUSION=$(gh run list --repo electometro-org/ --workflow=deploy-app.yml --limit=1 --json conclusion --jq '.[0].conclusion')
               if [ "$CONCLUSION" = "success" ]; then
                 echo "App deployment completed successfully"
                 break
