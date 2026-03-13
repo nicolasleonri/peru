@@ -1,5 +1,5 @@
 import { T } from "@tolgee/react"
-import { useRef } from "react"
+import { useRef } from 'react'
 import { useLoading } from './LoadingScreen'
 import './Hero.css'
 import PartyCarousel from './PartyCarousel.jsx'
@@ -47,14 +47,24 @@ function Hero() {
           <br />
           <PartyCarousel />
           <span className="title-who">
-            <LanguageCurtain>
-              <T keyName="hero.title.who" language={cycleLanguage}>quién</T>
-            </LanguageCurtain>
-          </span>{' '}
+            <span className="title-who-base">
+              <T keyName="hero.title.who" language="es">quién</T>
+            </span>
+            <span className="title-who-overlay" aria-hidden="true">
+              <LanguageCurtain>
+                <T keyName="hero.title.who" language={cycleLanguage}>quién</T>
+              </LanguageCurtain>
+            </span>
+          </span>
           <span className="title-represents">
-            <LanguageCurtain>
-              <T keyName="hero.title.represents" language={cycleLanguage}>te representa</T>
-            </LanguageCurtain>
+            <span className="title-represents-base">
+              <T keyName="hero.title.represents" language="es">te representa</T>
+            </span>
+            <span className="title-represents-overlay" aria-hidden="true">
+              <LanguageCurtain className="lang-curtain--mask">
+                <T keyName="hero.title.represents" language={cycleLanguage}>te representa</T>
+              </LanguageCurtain>
+            </span>
           </span>
         </h1>
         <div className="hero-cta">
