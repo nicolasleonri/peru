@@ -46,26 +46,14 @@ function Hero() {
           </span>
           <br />
           <PartyCarousel />
-          <span className="title-who">
-            <span className="title-who-base">
-              <T keyName="hero.title.who" language="es">quién</T>
+          <LanguageCurtain className="title-who-represents">
+            <span className="title-who">
+              <T keyName="hero.title.who" language={cycleLanguage}>quién</T>
+            </span>{' '}
+            <span className="title-represents">
+              <T keyName="hero.title.represents" language={cycleLanguage}>te representa</T>
             </span>
-            <span className="title-who-overlay" aria-hidden="true">
-              <LanguageCurtain>
-                <T keyName="hero.title.who" language={cycleLanguage}>quién</T>
-              </LanguageCurtain>
-            </span>
-          </span>
-          <span className="title-represents">
-            <span className="title-represents-base">
-              <T keyName="hero.title.represents" language="es">te representa</T>
-            </span>
-            <span className="title-represents-overlay" aria-hidden="true">
-              <LanguageCurtain className="lang-curtain--mask">
-                <T keyName="hero.title.represents" language={cycleLanguage}>te representa</T>
-              </LanguageCurtain>
-            </span>
-          </span>
+          </LanguageCurtain>
         </h1>
         <div className="hero-cta">
           <a

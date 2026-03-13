@@ -136,47 +136,24 @@
 .title-discover {
 }
 
+.title-who-represents {
+  white-space: nowrap;
+}
+
 .title-who {
-  margin-right: 0.35em;
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-
-.title-who-base {
-  visibility: hidden;
-}
-
-.title-who-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+  /*margin-right: 0.35em;*/
 }
 
 .title-represents {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-
-.title-represents-base {
-  visibility: hidden;
-}
-
-.title-represents-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  width: 100%;
-  overflow: visible;
-}
-
-.title-represents-overlay .lang-curtain-next,
-.title-represents-overlay .lang-curtain-prev {
   background: linear-gradient(160deg, #1e070a 0%, #FF001A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.title-who-represents .lang-curtain-next,
+.title-who-represents .lang-curtain-prev {
+  display: inline-block;
 }
 
 .hero-description {

@@ -73,6 +73,12 @@ body {
   grid-area: stack;
 }
 
+.lang-curtain--delay-500 .lang-curtain-next,
+.lang-curtain--delay-500 .lang-curtain-prev {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
 .lang-curtain--hero-discover .lang-curtain-next[data-lang="qu"],
 .lang-curtain--hero-discover .lang-curtain-prev[data-lang="qu"] {
   font-size: 0.80em;
