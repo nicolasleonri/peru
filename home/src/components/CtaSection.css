@@ -1,5 +1,5 @@
 .cta-section {
-  padding: 6rem 2rem;
+  padding: 12rem 2rem;
   background: var(--light-bg);
 }
 
@@ -7,7 +7,7 @@
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   background: linear-gradient(135deg, rgba(217, 16, 35, 0.05) 0%, rgba(200, 16, 46, 0.02) 100%);
   border-radius: 20px;
   border: 2px solid rgba(217, 16, 35, 0.2);
@@ -31,7 +31,7 @@
 
 @media (max-width: 768px) {
   .cta-section {
-    padding: 4rem 1rem;
+    padding: 12rem 1rem;
   }
 
   .cta-container {
