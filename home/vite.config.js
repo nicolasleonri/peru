@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import legacy from '@vitejs/plugin-legacy'
-// import { cloudflare } from "@cloudflare/vite-plugin";
+import { cloudflare } from "@cloudflare/vite-plugin";
 
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
@@ -15,11 +15,11 @@ export default defineConfig(({ mode }) => {
         additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
         modernPolyfills: true,
       }),
-      // cloudflare({
-      //   experimental: {
-      //     headersAndRedirectsDevModeSupport: true,
-      //   },
-      // }),
+      cloudflare({
+        experimental: {
+          headersAndRedirectsDevModeSupport: true,
+        },
+      }),
     ].filter(Boolean),
     // Transpile modern syntax (?. ??) in dev mode for older browsers
     esbuild: {
