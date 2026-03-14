@@ -1420,6 +1420,11 @@
     "september": "Quya raymi"
   },
   "nav": {
+    "backTo": {
+      "intro": "Qallariymanman kutiy",
+      "quiz": "Tapukuyman kutiy",
+      "results": "Ruwasqakunaman kutiy"
+    },
     "backToSurvey": "Tapukuyman kutiy",
     "contact": "Rimanakuy",
     "methodology": "Ruway",

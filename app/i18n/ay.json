@@ -1420,6 +1420,11 @@
     "september": "Septiembre phaxsi"
   },
   "nav": {
+    "backTo": {
+      "intro": "Qalltawi ukarux kutt'aña",
+      "quiz": "Encuesta ukarux kutt'aña",
+      "results": "Jaysanaka ukarux kutt'aña"
+    },
     "backToSurvey": "Encuesta ukarux kutt'aña",
     "contact": "Yatiyawi",
     "methodology": "Metodología",
