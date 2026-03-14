@@ -1,0 +1,109 @@
+{
+  "attributions": {
+    "author": "Jaqi",
+    "footer": "Taqi logotipoanakax sapa partido político nisqanakankiwa. Aka sitio ukax yatiyawinakatakipuni apnaqatawa, licencianakamarjama.",
+    "intro": "Aka web ukan uñacht’ayat partido político logotipoanakax Wikimedia Commons ukat jutapxi, aka licencia-nakaniwa:",
+    "license": "Licencia",
+    "publicDomain": "Dominio Público",
+    "source": "Qallta",
+    "title": "Atribuciones"
+  },
+  "features": {
+    "accessible": {
+      "description": "Computadora, tablet ukhamaraki celular ukanakan walikiwa. Munksña chiqan apnaqam.",
+      "title": "Maynïr Dispositivonakataki"
+    },
+    "fast": {
+      "description": "5 minutonakan qillqañaniwa, juk’amp jank’akiwa. Listo!",
+      "title": "Jank’a ukhamaraki Suma"
+    },
+    "matching": {
+      "description": "Algoritmoyku kutichatunakaru partido político plananakampi uñt’ayi. Uka tuqitaw candidatunakampi sum uñt’aya.",
+      "title": "Uka tuqit qhanst’ayi"
+    },
+    "objective": {
+      "description": "Qhanakïri metodología, propuesta ukhamaraki público postura ukanakampi.",
+      "title": "Ch’amanchawi"
+    },
+    "privacy": {
+      "description": "Janikaw datos personales wakicht’apkiti. Janiw político ni jaqinakampi jach’añchaskiti.",
+      "title": "Datos uñt’awi"
+    },
+    "results": {
+      "description": "Sapa partidompix afinidad uñjaña ukhamaraki kutichatunakamp ch’axwa.",
+      "title": "Detalle Resultados"
+    },
+    "subtitle": "Yatiñamp ch’amanchaña. Janiw piman votañam axsaskiti. Sapa partidomp yatiñam yanapt’asi.",
+    "title": "¿Kunjam Electómetro?"
+  },
+  "footer": {
+    "about": {
+      "features": "Kunjamawa",
+      "howItWorks": "Kunjam apnaqaña",
+      "startTest": "Qalltaña",
+      "title": "Uka tuqit"
+    },
+    "description": "Janiw piman sayakiti. Suma yatiyawi."
+    ,
+    "disclaimer": "Yatiyawi. Janiw consejo electoral oficial ukhamäkiti.",
+    "info": {
+      "attributions": "Atribuciones",
+      "contact": "Contacto",
+      "methodology": "Metodología",
+      "privacy": "Privacidad",
+      "title": "Yatiyawi"
+    }
+  },
+  "hero": {
+    "badge": "Elecciones 2026",
+    "cta": {
+      "learnMore": "Juk’amp yatiña",
+      "start": "Qalltaña"
+    },
+    "languages": {
+      "label": "Ukhamaraki",
+      "qu": "Runasimi",
+      "ay": "Aymara"
+    },
+    "stats": {
+      "candidates": "Candidatos",
+      "necessary": "Necessario",
+      "questions": "Jiskt’awinaka"
+    },
+    "title": {
+      "discover": "Amuyt’aña",
+      "represents": "5 minutonaka",
+      "who": "kuna"
+    }
+  },
+  "howItWorks": {
+    "cta": {
+      "button": "Jichha qalltaña",
+      "description": "Minutunakan yatiña, khitinakaw suma uñt’ayi",
+      "title": "¿Qalltañamawa?"
+    },
+    "step1": {
+      "description": "Jiskt’awinakar kutichma. Mana chiqañkaspaw pasma.",
+      "title": "Jiskt’awinaka kutichaña"
+    },
+    "step2": {
+      "description": "Algoritmoyku kutichatam uñt’ayi sapa partido postura ukampi.",
+      "title": "Perfil uñt’aña"
+    },
+    "step3": {
+      "description": "Maynïr partidompix uñt’aña.",
+      "title": "Compatibilidad uñt’aña"
+    },
+    "step4": {
+      "description": "Aka yatiyawinaka apnaqañamawa.",
+      "title": "Amuyt’añani"
+    },
+    "subtitle": "5 pasonakan uñt’aña",
+    "title": "¿Kunjam apnaqaña?"
+  },
+  "nav": {
+    "features": "Kunjamawa",
+    "howItWorks": "Kunjam apnaqaña",
+    "start": "Qalltaña"
+  }
+}
