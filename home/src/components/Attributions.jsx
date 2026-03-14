@@ -156,7 +156,80 @@ function Attributions() {
       licenseUrl: null,
       source: 'Wikipedia',
       sourceUrl: 'https://es.wikipedia.org/wiki/Archivo:Logo_PTE_PERU.jpg'
-    }
+    },
+    {
+      name: 'Efecto de sonido',
+      fullName: 'curious_world_on_youtube',
+      license: 'CC BY 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.es',
+      source: 'freesound.org',
+      sourceUrl: 'https://freesound.org/people/curious_world_on_youtube/sounds/822497/'
+    },
+    {
+      name: 'Efecto de sonido',
+      fullName: 'OGsoundFX',
+      license: 'CC BY 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.es',
+      source: 'freesound.org',
+      sourceUrl: 'https://freesound.org/people/OGsoundFX/sounds/423007/'
+    },
+    {
+      name: 'Efecto de sonido',
+      fullName: 'urupin',
+      license: 'CC BY 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.es',
+      source: 'freesound.org',
+      sourceUrl: 'https://freesound.org/people/urupin/sounds/500227/'
+    },
+    {
+      name: 'Efecto de sonido',
+      fullName: 'grunz',
+      license: 'CC BY 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.es',
+      source: 'freesound.org',
+      sourceUrl: 'https://freesound.org/people/grunz/sounds/109662/'
+    },
+    {
+      name: 'Efecto de sonido',
+      fullName: 'ancorapazzo',
+      license: 'CC BY 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/deed.es',
+      source: 'freesound.org',
+      sourceUrl: 'https://freesound.org/people/ancorapazzo/sounds/181627/'
+    },
+    {
+      name: 'Imagen',
+      fullName: 'Elena Izcue',
+      license: 'Public Domain',
+      licenseUrl: null,
+      source: 'admagazine.com',
+      sourceUrl: 'https://www.admagazine.com/articulos/elena-izcue-icono-del-diseno-latinoamericano-del-siglo-xx'
+    },
+    {
+      name: 'Imagen',
+      fullName: 'Elena Izcue',
+      license: 'Public Domain',
+      licenseUrl: null,
+      source: 'revistamateria.com',
+      sourceUrl: 'https://www.revistamateria.com/perfil/elena-izcue-pionera-en-integrar-la-estetica-precolombina-al-diseno/'
+    },
+    {
+      name: 'Imagen',
+      fullName: 'Elena Izcue',
+      license: 'Public Domain',
+      licenseUrl: null,
+      source: 'equatorjournal.com',
+      sourceUrl: 'https://equatorjournal.com/post/155779943476/elena-izcue-sin-t%C3%ADtulo-192636-acuarela-sobre'
+    },
+    {
+      name: 'Imagen',
+      fullName: 'Elena Izcue',
+      license: 'Public Domain',
+      licenseUrl: null,
+      source: 'taldiacomohoy.es',
+      sourceUrl: 'https://www.taldiacomohoy.es/post/elena-izcue-1889-1970'
+    },
+    
   ]
 
   return (
@@ -206,7 +279,7 @@ function Attributions() {
 
         <div className="attributions-footer">
           <p>
-            <T keyName="attributions.footer">Todos los logos son propiedad de sus respectivos partidos políticos. El uso de estos logos en este sitio es exclusivamente con fines informativos y educativos, conforme a las licencias bajo las cuales fueron publicados.</T>
+            <T keyName="attributions.footer">Todos los logos son propiedad de sus respectivos partidos políticos. El uso de estos logos en este sitio es exclusivamente con fines informativos y educativos, conforme a las licencias bajo las cuales fueron publicados. </T>
           </p>
         </div>
       </div>
