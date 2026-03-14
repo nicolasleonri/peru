@@ -1,37 +1,59 @@
-import { useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useCycleLanguage } from '../contexts/LanguageCycle.jsx'
 
-/**
- * LanguageCurtain wraps text that changes with the language cycle.
- * It stacks the previous and next children using CSS grid, animating
- * the outgoing text out (curtainFadeOut) and the incoming text in
- * (curtainReveal / curtainMaskReveal) — all driven by classes defined
- * in index.css.
- *
- * Props:
- *   className  – extra modifier classes, e.g. "lang-curtain--hero-discover"
- *                or "lang-curtain--mask title-who-represents"
- *   children   – the current text node (re-renders when language changes)
- */
-function LanguageCurtain({ className = '', children }) {
-  const { cycleId } = useCycleLanguage()
-  const prevRef = useRef({ children, cycleId })
+function LanguageCurtain({ children, className, lockWidth = false, lockedWidth = null }) {
+  const { cycleId, language } = useCycleLanguage()
+  const [showPrev, setShowPrev] = useState(false)
+  const [prevChildren, setPrevChildren] = useState(null)
+  const [prevLanguage, setPrevLanguage] = useState('es')
+  const lastChildrenRef = useRef(children)
+  const lastLanguageRef = useRef(language)
+  const wrapperRef = useRef(null)
+  const prevRef = useRef(null)
+  const nextRef = useRef(null)
 
-  const isNew = prevRef.current.cycleId !== cycleId
-  const prevChildren = prevRef.current.children
+  useEffect(() => {
+    const prev = lastChildrenRef.current
+    if (prev === children) return
+    setPrevChildren(prev)
+    setPrevLanguage(lastLanguageRef.current || 'es')
+    setShowPrev(true)
 
-  if (isNew) {
-    prevRef.current = { children, cycleId }
-  }
+    const timer = setTimeout(() => {
+      setShowPrev(false)
+    }, 650)
+
+    return () => clearTimeout(timer)
+  }, [cycleId])
+
+  useLayoutEffect(() => {
+    if (!lockWidth) return
+    const wrapper = wrapperRef.current
+    if (!wrapper) return
+    const nextEl = nextRef.current
+    if (!nextEl) return
+    const nextWidth = nextEl.offsetWidth
+    const prevWidth = prevRef.current ? prevRef.current.offsetWidth : 0
+    const maxWidth = Math.max(nextWidth, prevWidth)
+    const resolvedWidth = lockedWidth ?? maxWidth
+    if (resolvedWidth && resolvedWidth > 0) {
+      wrapper.style.minWidth = `${resolvedWidth}px`
+    }
+  }, [children, lockWidth, cycleId, lockedWidth])
+
+  useEffect(() => {
+    lastChildrenRef.current = children
+    lastLanguageRef.current = language
+  }, [children, language])
 
   return (
-    <span className={`lang-curtain ${className}`}>
-      {isNew && (
-        <span key={`prev-${cycleId}`} className="lang-curtain-prev">
+    <span ref={wrapperRef} className={`lang-curtain${className ? ` ${className}` : ''}`}>
+      {showPrev && (
+        <span ref={prevRef} className="lang-curtain-prev" data-lang={prevLanguage || 'es'}>
           {prevChildren}
         </span>
       )}
-      <span key={`next-${cycleId}`} className="lang-curtain-next">
+      <span ref={nextRef} className="lang-curtain-next" data-lang={language || 'es'} key={cycleId}>
         {children}
       </span>
     </span>
