@@ -25,7 +25,9 @@ function Collaborations() {
         <div className="collaborations-types">
           {types.map((type, index) => (
             <div key={index} className="collab-type-card">
-              <img src={type.image} alt={type.titleDefault} className="collab-type-image" />
+              <a href={type.link} target="_blank" rel="noopener noreferrer">
+                <img src={type.image} alt={type.titleDefault} className="collab-type-image" />
+              </a>
               <a href={type.link} target="_blank" rel="noopener noreferrer" className="collab-type-link">
                 <h3 className="collab-type-title">
                   <T keyName={type.titleKey}>{type.titleDefault}</T>
