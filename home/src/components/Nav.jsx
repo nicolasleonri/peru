@@ -50,9 +50,24 @@ function Nav() {
           </li>
           <li className="nav-item">
             <Link to="/#como-funciona" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-              <T keyName="nav.howItWorks">Cómo Funciona</T>
+              <T keyName="nav.howItWorks">Cómo funciona</T>
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/#quienes-somos" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+              <T keyName="nav.whoWeAre">Quiénes somos</T>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/#kit-de-prensa" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+              <T keyName="nav.pressKit">Kit de prensa</T>
+            </Link>
+          </li>
+          {/* <li className="nav-item">
+            <Link to="/#colaboraciones" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+              <T keyName="nav.collaborations">Colaboraciones</T>
+            </Link>
+          </li> */}
           <li className="nav-item">
             <a
               href={`${import.meta.env.VITE_ELECTOMETRO_URL}/#/metodologia`}
